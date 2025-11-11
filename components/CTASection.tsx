@@ -1,9 +1,18 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Gift, Github } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Gift, Github, Copy, Check } from "lucide-react";
+import { useState } from "react";
 
 export default function CTASection() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText('npm install -g boilerify');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <section className="py-20 px-6 relative">
       <div className="container mx-auto max-w-4xl">
@@ -27,10 +36,34 @@ export default function CTASection() {
                 npm install -g boilerify
               </code>
               <button
-                onClick={() => navigator.clipboard.writeText('npm install -g boilerify')}
-                className="px-4 py-2 bg-emerald-500/20 hover:bg-emerald-500/30 rounded-lg text-sm transition"
+                onClick={handleCopy}
+                className="px-4 py-2 bg-emerald-500/20 hover:bg-emerald-500/30 rounded-lg text-sm transition flex items-center gap-2 min-w-[100px] justify-center"
               >
-                Copy
+                <AnimatePresence mode="wait">
+                  {copied ? (
+                    <motion.span
+                      key="copied"
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      className="flex items-center gap-2"
+                    >
+                      <Check className="w-4 h-4" />
+                      Copied!
+                    </motion.span>
+                  ) : (
+                    <motion.span
+                      key="copy"
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      className="flex items-center gap-2"
+                    >
+                      <Copy className="w-4 h-4" />
+                      Copy
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </button>
             </div>
           </div>

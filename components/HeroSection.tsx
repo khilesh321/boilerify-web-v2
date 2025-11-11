@@ -30,7 +30,7 @@ export default function HeroSection() {
           <motion.div variants={fadeInUp}>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-emerald-500/30 mb-6">
               <Star className="w-4 h-4 text-emerald-400 fill-emerald-400" />
-              <span className="text-sm text-emerald-400">v1.0.0 now available</span>
+              <span className="text-sm text-emerald-400">v1.1.1 now available</span>
             </div>
           </motion.div>
 

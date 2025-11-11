@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Boilerify - Generate full-stack React + Express apps instantly",
   description: "A CLI tool that scaffolds React + Vite + Express projects in seconds — so you can start building, not configuring.",
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({

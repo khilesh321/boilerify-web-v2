@@ -19,12 +19,11 @@ import {
   Zap,
   Code2,
   Settings,
-  Home,
-  Menu,
-  X
+  Home
 } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import HamburgerMenu from "@/components/HamburgerMenu";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -101,17 +100,12 @@ export default function DocsPage() {
                 <span className="text-lg font-bold sm:hidden">Docs</span>
               </div>
               {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 hover:bg-white/10 rounded-lg transition"
-                aria-label="Toggle navigation menu"
-              >
-                {isMobileMenuOpen ? (
-                  <X className="w-5 h-5" />
-                ) : (
-                  <Menu className="w-5 h-5" />
-                )}
-              </button>
+              <div className="lg:hidden">
+                <HamburgerMenu 
+                  isOpen={isMobileMenuOpen} 
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -559,7 +553,7 @@ npm run dev  # Starts Vite dev server`}
                     target="_blank"
                     className="text-emerald-400 hover:text-emerald-300"
                   >
-                    https://github.com/khilesh321/boilerify-cli
+                    Boilerify CLI
                   </a>
                 </p>
               </div>

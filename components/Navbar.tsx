@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, Github, Download } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import HamburgerMenu from "./HamburgerMenu";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,42 +46,12 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 hover:bg-white/10 rounded-lg transition"
-            aria-label="Toggle menu"
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.div
-              animate={isMenuOpen ? "open" : "closed"}
-              className="relative w-6 h-6"
-            >
-              <motion.span
-                variants={{
-                  closed: { rotate: 0, y: 0 },
-                  open: { rotate: 45, y: 8 }
-                }}
-                transition={{ duration: 0.3 }}
-                className="absolute top-1 left-0 w-6 h-0.5 bg-white origin-center block"
-              />
-              <motion.span
-                variants={{
-                  closed: { opacity: 1 },
-                  open: { opacity: 0 }
-                }}
-                transition={{ duration: 0.2 }}
-                className="absolute top-1/2 left-0 w-6 h-0.5 bg-white -translate-y-1/2 block"
-              />
-              <motion.span
-                variants={{
-                  closed: { rotate: 0, y: 0 },
-                  open: { rotate: -45, y: -8 }
-                }}
-                transition={{ duration: 0.3 }}
-                className="absolute bottom-1 left-0 w-6 h-0.5 bg-white origin-center block"
-              />
-            </motion.div>
-          </motion.button>
+          <div className="md:hidden">
+            <HamburgerMenu 
+              isOpen={isMenuOpen} 
+              onClick={() => setIsMenuOpen(!isMenuOpen)} 
+            />
+          </div>
         </div>
 
         {/* Mobile Menu */}

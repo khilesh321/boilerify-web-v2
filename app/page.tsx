@@ -8,6 +8,7 @@ import WhyBoilerifySection from "@/components/WhyBoilerifySection";
 import DocsSection from "@/components/DocsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import ReactLenis from "lenis/react";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <div className="fixed bottom-0 right-0 md:right-1/4 w-64 h-64 md:w-96 md:h-96 bg-green-500/20 rounded-full blur-3xl" />
 
       {/* Components */}
+      <ReactLenis root/>
       <Navbar />
       <HeroSection />
       <StackSection />

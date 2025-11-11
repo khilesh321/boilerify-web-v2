@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Terminal, 
   Rocket, 
@@ -19,9 +19,12 @@ import {
   Zap,
   Code2,
   Settings,
-  Home
+  Home,
+  Menu,
+  X
 } from "lucide-react";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -38,6 +41,41 @@ const staggerContainer = {
 };
 
 export default function DocsPage() {
+  const [activeSection, setActiveSection] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const sections = [
+    { id: "features", title: "Features", icon: Zap },
+    { id: "prerequisites", title: "Prerequisites", icon: CheckCircle },
+    { id: "quick-start", title: "Quick Start", icon: Rocket },
+    { id: "usage", title: "Usage", icon: PlayCircle },
+    { id: "structure", title: "Project Structure", icon: FolderTree },
+    { id: "running", title: "Running Your Project", icon: PlayCircle },
+    { id: "scripts", title: "Development Scripts", icon: Code2 },
+    { id: "package-managers", title: "Package Managers", icon: Package },
+    { id: "contributing", title: "Contributing", icon: Github },
+    { id: "support", title: "Support", icon: BookOpen },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i].id);
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i].id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Grid Background */}
@@ -53,31 +91,128 @@ export default function DocsPage() {
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2 hover:text-emerald-400 transition">
               <Home className="w-5 h-5" />
-              <span className="font-semibold">Back to Home</span>
+              <span className="font-semibold hidden sm:inline">Back to Home</span>
+              <span className="font-semibold sm:hidden">Home</span>
             </Link>
-            <div className="flex items-center gap-2">
-              <Terminal className="w-6 h-6 text-emerald-400" />
-              <span className="text-xl font-bold">Boilerify Docs</span>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <Terminal className="w-6 h-6 text-emerald-400" />
+                <span className="text-xl font-bold hidden sm:inline">Boilerify Docs</span>
+                <span className="text-lg font-bold sm:hidden">Docs</span>
+              </div>
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden p-2 hover:bg-white/10 rounded-lg transition"
+                aria-label="Toggle navigation menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-5 h-5" />
+                ) : (
+                  <Menu className="w-5 h-5" />
+                )}
+              </button>
             </div>
           </div>
         </div>
       </nav>
 
+      {/* Mobile Navigation Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed top-[73px] right-0 bottom-0 w-80 max-w-[85vw] z-40 glass-card border-l border-white/10 lg:hidden overflow-y-auto"
+          >
+            <div className="p-6">
+              <h3 className="text-sm font-semibold text-emerald-400 mb-4 flex items-center gap-2">
+                <BookOpen className="w-4 h-4" />
+                Navigation
+              </h3>
+              <nav className="space-y-1">
+                {sections.map((section) => (
+                  <a
+                    key={section.id}
+                    href={`#${section.id}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition ${
+                      activeSection === section.id
+                        ? "bg-emerald-500/20 text-emerald-400 border-l-2 border-emerald-500"
+                        : "text-gray-400 hover:text-white hover:bg-white/5"
+                    }`}
+                  >
+                    <section.icon className="w-4 h-4 shrink-0" />
+                    <span className="truncate">{section.title}</span>
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+          />
+        )}
+      </AnimatePresence>
+
       <div className="container mx-auto px-6 pt-32 pb-20 relative z-10">
+        <div className="flex gap-8 relative">
+          {/* Left Sidebar Navigation - Fixed */}
+          <aside className="hidden lg:block w-64 shrink-0">
+            <div className="fixed top-24 w-64 max-h-[calc(100vh-7rem)] overflow-y-auto">
+              <div className="glass-card rounded-xl p-6 border border-white/10">
+                <h3 className="text-sm font-semibold text-emerald-400 mb-4 flex items-center gap-2">
+                  <BookOpen className="w-4 h-4" />
+                  On This Page
+                </h3>
+                <nav className="space-y-1">
+                  {sections.map((section) => (
+                    <a
+                      key={section.id}
+                      href={`#${section.id}`}
+                      className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition ${
+                        activeSection === section.id
+                          ? "bg-emerald-500/20 text-emerald-400 border-l-2 border-emerald-500"
+                          : "text-gray-400 hover:text-white hover:bg-white/5"
+                      }`}
+                    >
+                      <section.icon className="w-4 h-4 shrink-0" />
+                      <span className="truncate">{section.title}</span>
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </div>
+          </aside>
+
+          {/* Main Content */}
+          <div className="flex-1 min-w-0">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full mb-6">
             <BookOpen className="w-4 h-4 text-emerald-400" />
             <span className="text-sm text-emerald-400">Complete Documentation</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-linear-to-r from-emerald-400 to-green-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6 bg-linear-to-r from-emerald-400 to-green-600 bg-clip-text text-transparent px-4">
             Documentation
           </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-4">
             Everything you need to know about using Boilerify to scaffold production-ready fullstack projects
           </p>
         </motion.div>
@@ -87,7 +222,7 @@ export default function DocsPage() {
           variants={staggerContainer}
           initial="initial"
           animate="animate"
-          className="grid md:grid-cols-4 gap-4 mb-16"
+          className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-12 md:mb-16"
         >
           {[
             { icon: Rocket, title: "Quick Start", href: "#quick-start" },
@@ -99,16 +234,16 @@ export default function DocsPage() {
               key={i}
               variants={fadeInUp}
               href={link.href}
-              className="glass-card p-6 hover:border-emerald-500/50 transition group cursor-pointer rounded-xl"
+              className="glass-card p-4 md:p-6 hover:border-emerald-500/50 transition group cursor-pointer rounded-xl"
             >
-              <link.icon className="w-8 h-8 text-emerald-400 mb-2 group-hover:scale-110 transition" />
-              <h3 className="font-semibold">{link.title}</h3>
+              <link.icon className="w-6 h-6 md:w-8 md:h-8 text-emerald-400 mb-2 group-hover:scale-110 transition" />
+              <h3 className="font-semibold text-sm md:text-base">{link.title}</h3>
             </motion.a>
           ))}
         </motion.div>
 
         {/* Main Content */}
-        <div className="max-w-4xl mx-auto space-y-16">
+        <div className="space-y-12 md:space-y-16">
           {/* Features */}
           <Section id="features" icon={Zap} title="Features">
             <div className="grid md:grid-cols-2 gap-4">
@@ -436,35 +571,42 @@ npm run dev  # Starts Vite dev server`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center glass-card p-12 border-emerald-500/20"
+            className="text-center glass-card p-8 md:p-12 border-emerald-500/20 rounded-xl relative overflow-hidden"
           >
-            <h2 className="text-3xl font-bold mb-4">Ready to Start Building?</h2>
-            <p className="text-gray-400 mb-8">Get started with Boilerify in seconds</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://www.npmjs.com/package/boilerify"
-                target="_blank"
-                className="px-8 py-4 bg-linear-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition flex items-center justify-center gap-2"
-              >
-                <Download className="w-5 h-5" />
-                Install Boilerify
-              </a>
-              <Link
-                href="/"
-                className="px-8 py-4 border border-white/10 rounded-lg font-semibold hover:border-emerald-500/50 transition flex items-center justify-center gap-2"
-              >
-                <Home className="w-5 h-5" />
-                Back to Home
-              </Link>
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-linear-to-r from-emerald-500/5 to-green-500/5 pointer-events-none" />
+            
+            <div className="relative z-10">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to Start Building?</h2>
+              <p className="text-gray-400 mb-6 md:mb-8">Get started with Boilerify in seconds</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="https://www.npmjs.com/package/boilerify"
+                  target="_blank"
+                  className="px-6 md:px-8 py-3 md:py-4 bg-linear-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition flex items-center justify-center gap-2 text-sm md:text-base"
+                >
+                  <Download className="w-5 h-5" />
+                  Install Boilerify
+                </a>
+                <Link
+                  href="/"
+                  className="px-6 md:px-8 py-3 md:py-4 border border-white/10 rounded-lg font-semibold hover:border-emerald-500/50 transition flex items-center justify-center gap-2 text-sm md:text-base"
+                >
+                  <Home className="w-5 h-5" />
+                  Back to Home
+                </Link>
+              </div>
             </div>
           </motion.div>
+        </div>
+        </div>
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 mt-20">
+      <footer className="border-t border-white/10 mt-20 relative z-10">
         <div className="container mx-auto px-6 py-8 text-center text-gray-400">
-          <p>Made with ❤️ and ☕ by <a href="https://github.com/khilesh321" target="_blank" className="text-emerald-400 hover:text-emerald-300">Khilesh</a></p>
+          <p>Made with ❤️ by <a href="https://github.com/khilesh321" target="_blank" className="text-emerald-400 hover:text-emerald-300">Khilesh</a></p>
         </div>
       </footer>
     </div>
@@ -481,13 +623,13 @@ function Section({ id, icon: Icon, title, children }: { id: string; icon: any; t
       viewport={{ once: true }}
       className="scroll-mt-24"
     >
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center">
-          <Icon className="w-6 h-6 text-emerald-400" />
+      <div className="flex items-center gap-3 mb-4 md:mb-6">
+        <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center shrink-0">
+          <Icon className="w-5 h-5 md:w-6 md:h-6 text-emerald-400" />
         </div>
-        <h2 className="text-3xl font-bold">{title}</h2>
+        <h2 className="text-2xl md:text-3xl font-bold">{title}</h2>
       </div>
-      <div className="glass-card p-8 rounded-xl">
+      <div className="glass-card p-6 md:p-8 rounded-xl">
         {children}
       </div>
     </motion.section>

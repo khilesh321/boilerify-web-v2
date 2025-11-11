@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BookOpen, FileCode, Puzzle, Code2 } from "lucide-react";
+import { BookOpen, FileCode, Puzzle, Code2, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const docs = [
   {
@@ -44,7 +45,7 @@ export default function DocsSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-4 gap-6 mb-12">
           {docs.map((doc, index) => (
             <motion.div
               key={index}
@@ -62,7 +63,23 @@ export default function DocsSection() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <Link 
+            href="/docs"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition"
+          >
+            View Full Documentation
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
 }
+

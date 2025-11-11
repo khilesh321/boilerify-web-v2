@@ -20,9 +20,9 @@ export default function Navbar() {
           
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-6">
-            <Link href="#features" className="hover:text-emerald-400 transition">Features</Link>
-            <Link href="#setup" className="hover:text-emerald-400 transition">Setup</Link>
-            <Link href="#docs" className="hover:text-emerald-400 transition">Docs</Link>
+            <Link href="/#features" className="hover:text-emerald-400 transition">Features</Link>
+            <Link href="/#setup" className="hover:text-emerald-400 transition">Setup</Link>
+            <Link href="/docs" className="hover:text-emerald-400 transition">Docs</Link>
             <a 
               href="https://github.com/khilesh321/boilerify-cli" 
               target="_blank"

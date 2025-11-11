@@ -12,6 +12,9 @@ export default function LenisWrapper({ children }: LenisWrapperProps) {
   const lenisRef = useRef<LenisRef>(null);
 
   useEffect(() => {
+    // Reset scroll position on mount
+    window.scrollTo(0, 0);
+    
     function update(time: number) {
       lenisRef.current?.lenis?.raf(time);
     }

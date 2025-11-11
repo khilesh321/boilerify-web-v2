@@ -63,7 +63,19 @@ export default function HeroSection() {
               href="#setup"
               className="px-8 py-4 bg-linear-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition flex items-center gap-2"
             >
-              Get Started <ArrowRight className="w-5 h-5" />
+              Get Started 
+              <motion.span
+                animate={{ 
+                  x: [0, 5, 0],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <ArrowRight className="w-5 h-5" />
+              </motion.span>
             </a>
             <a
               href="https://github.com/khilesh321/boilerify-cli"

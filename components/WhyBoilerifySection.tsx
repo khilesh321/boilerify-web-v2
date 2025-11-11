@@ -62,13 +62,14 @@ export default function WhyBoilerifySection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="glass-card rounded-xl p-6 hover:border-emerald-500/50 transition"
+              className="glass-card rounded-xl p-6 group hover:border-emerald-500/50 transition relative overflow-hidden"
             >
+              <div className="absolute top-25 -left-10 group-hover:-top-30 group-hover:left-full transition-all duration-1000 h-full w-5 -rotate-50 bg-white/20 blur-lg"></div>
               <div className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center mb-4">
                 <feature.icon className="w-6 h-6 text-emerald-400" />
               </div>
-              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-              <p className="text-gray-400 text-sm">{feature.description}</p>
+              <h3 className="text-xl group-hover:text-emerald-400 transition duration-250 font-bold mb-2">{feature.title}</h3>
+              <p className="text-gray-400 group-hover:text-gray-300 transition duration-250 text-sm">{feature.description}</p>
             </motion.div>
           ))}
         </div>

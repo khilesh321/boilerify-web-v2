@@ -69,19 +69,39 @@ export default function StackSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="glass-card rounded-xl p-8 hover:border-emerald-500/50 transition group"
+              whileHover={{ 
+                y: -8,
+                transition: { duration: 0.3, ease: "easeOut" }
+              }}
+              className="glass-card rounded-xl p-8 hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-500/20 transition-all duration-300 group cursor-pointer"
             >
-              <div className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center mb-6 group-hover:bg-emerald-500/30 transition">
-                <card.icon className="w-6 h-6 text-emerald-400" />
-              </div>
-              <h3 className="text-2xl font-bold mb-3">{card.title}</h3>
-              <p className="text-gray-400 mb-6">{card.description}</p>
+              <motion.div 
+                className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center mb-6 group-hover:bg-emerald-500/30 transition-all duration-300"
+                whileHover={{ 
+                  scale: 1.1,
+                  rotate: 5,
+                  transition: { duration: 0.3 }
+                }}
+              >
+                <card.icon className="w-6 h-6 text-emerald-400 group-hover:scale-110 transition-transform duration-300" />
+              </motion.div>
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-emerald-400 transition-colors duration-300">{card.title}</h3>
+              <p className="text-gray-400 mb-6 group-hover:text-gray-300 transition-colors duration-300">{card.description}</p>
               <ul className="space-y-3">
                 {card.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <motion.li 
+                    key={i} 
+                    className="flex items-start gap-2 text-sm text-gray-300"
+                    initial={{ opacity: 0.8 }}
+                    whileHover={{ 
+                      opacity: 1,
+                      x: 4,
+                      transition: { duration: 0.2 }
+                    }}
+                  >
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
                     <span>{feature}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>

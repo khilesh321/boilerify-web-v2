@@ -39,7 +39,7 @@ export default function CTASection() {
             <a
               href="https://www.npmjs.com/package/boilerify"
               target="_blank"
-              className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition flex items-center gap-2"
+              className="px-8 py-4 bg-linear-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition flex items-center gap-2"
             >
               <Gift className="w-5 h-5" />
               Installation

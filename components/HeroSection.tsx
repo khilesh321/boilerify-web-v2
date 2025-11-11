@@ -39,7 +39,7 @@ export default function HeroSection() {
             className="text-5xl md:text-7xl font-bold leading-tight"
           >
             Generate full-stack <br />
-            <span className="bg-gradient-to-r from-emerald-400 to-green-600 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-emerald-400 to-green-600 bg-clip-text text-transparent">
               React + Express apps
             </span>
             <br />
@@ -61,7 +61,7 @@ export default function HeroSection() {
           >
             <a
               href="#setup"
-              className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition flex items-center gap-2"
+              className="px-8 py-4 bg-linear-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition flex items-center gap-2"
             >
               Get Started <ArrowRight className="w-5 h-5" />
             </a>

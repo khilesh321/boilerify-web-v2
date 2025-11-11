@@ -74,7 +74,7 @@ export default function DocsPage() {
             <BookOpen className="w-4 h-4 text-emerald-400" />
             <span className="text-sm text-emerald-400">Complete Documentation</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-green-600 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-linear-to-r from-emerald-400 to-green-600 bg-clip-text text-transparent">
             Documentation
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">

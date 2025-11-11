@@ -24,20 +24,7 @@ import {
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import HamburgerMenu from "@/components/HamburgerMenu";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
+import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 export default function DocsPage() {
   const [activeSection, setActiveSection] = useState("");

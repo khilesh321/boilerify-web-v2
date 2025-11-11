@@ -1,10 +1,15 @@
 "use client";
 
 import ReactLenis from "lenis/react";
+import type { LenisRef } from "lenis/react";
 import { useEffect, useRef } from "react";
 
-export default function LenisWrapper({ children }: { children: React.ReactNode }) {
-  const lenisRef = useRef<any>(null);
+interface LenisWrapperProps {
+  children: React.ReactNode;
+}
+
+export default function LenisWrapper({ children }: LenisWrapperProps) {
+  const lenisRef = useRef<LenisRef>(null);
 
   useEffect(() => {
     function update(time: number) {

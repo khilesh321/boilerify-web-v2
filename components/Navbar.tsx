@@ -3,11 +3,14 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, Github, Download } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import HamburgerMenu from "./HamburgerMenu";
+import { NAV_LINKS, EXTERNAL_LINKS } from "@/constants/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
   return (
     <motion.nav 
@@ -24,20 +27,28 @@ export default function Navbar() {
           
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-6">
-            <Link href="/#features" className="hover:text-emerald-400 transition">Features</Link>
-            <Link href="/#setup" className="hover:text-emerald-400 transition">Setup</Link>
-            <Link href="/docs" className="hover:text-emerald-400 transition">Docs</Link>
+            {NAV_LINKS.map((link) => (
+              <Link 
+                key={link.href}
+                href={link.href} 
+                className="hover:text-emerald-400 transition"
+              >
+                {link.label}
+              </Link>
+            ))}
             <a 
-              href="https://github.com/khilesh321/boilerify-cli" 
+              href={EXTERNAL_LINKS.github}
               target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-emerald-400 transition"
             >
               <Github className="w-4 h-4" />
               GitHub
             </a>
             <a
-              href="https://www.npmjs.com/package/boilerify"
+              href={EXTERNAL_LINKS.npm}
               target="_blank"
+              rel="noopener noreferrer"
               className="px-4 py-2 bg-linear-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
@@ -71,55 +82,33 @@ export default function Navbar() {
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="py-4 space-y-4 border-t border-white/10 mt-4"
               >
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 }}
-                >
-                  <Link 
-                    href="/#features" 
-                    className="block py-2 hover:text-emerald-400 transition"
-                    onClick={() => setIsMenuOpen(false)}
+                {NAV_LINKS.map((link, index) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + index * 0.05 }}
                   >
-                    Features
-                  </Link>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.15 }}
-                >
-                  <Link 
-                    href="/#setup" 
-                    className="block py-2 hover:text-emerald-400 transition"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Setup
-                  </Link>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <Link 
-                    href="/docs" 
-                    className="block py-2 hover:text-emerald-400 transition"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Docs
-                  </Link>
-                </motion.div>
+                    <Link 
+                      href={link.href}
+                      className="block py-2 hover:text-emerald-400 transition"
+                      onClick={closeMenu}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.25 }}
                 >
                   <a 
-                    href="https://github.com/khilesh321/boilerify-cli" 
+                    href={EXTERNAL_LINKS.github}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-2 py-2 hover:text-emerald-400 transition"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={closeMenu}
                   >
                     <Github className="w-4 h-4" />
                     GitHub
@@ -131,10 +120,11 @@ export default function Navbar() {
                   transition={{ delay: 0.3 }}
                 >
                   <a
-                    href="https://www.npmjs.com/package/boilerify"
+                    href={EXTERNAL_LINKS.npm}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={closeMenu}
                   >
                     <Download className="w-4 h-4" />
                     Install CLI

@@ -37,7 +37,7 @@ export default function Navbar() {
             <a
               href="https://www.npmjs.com/package/boilerify"
               target="_blank"
-              className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition flex items-center gap-2"
+              className="px-4 py-2 bg-linear-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
               Install CLI
@@ -162,7 +162,7 @@ export default function Navbar() {
                   <a
                     href="https://www.npmjs.com/package/boilerify"
                     target="_blank"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <Download className="w-4 h-4" />

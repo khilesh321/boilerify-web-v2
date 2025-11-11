@@ -39,7 +39,7 @@ const staggerContainer = {
 
 export default function DocsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+    <div className="min-h-screen bg-linear-to-b from-slate-950 via-slate-900 to-slate-950">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 glass-card border-b border-white/10">
         <div className="container mx-auto px-6 py-4">
@@ -67,7 +67,7 @@ export default function DocsPage() {
             <BookOpen className="w-4 h-4 text-emerald-400" />
             <span className="text-sm text-emerald-400">Complete Documentation</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-green-600 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-linear-to-r from-emerald-400 to-green-600 bg-clip-text text-transparent">
             Documentation
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
@@ -437,7 +437,7 @@ npm run dev  # Starts Vite dev server`}
               <a
                 href="https://www.npmjs.com/package/boilerify"
                 target="_blank"
-                className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition flex items-center justify-center gap-2"
+                className="px-8 py-4 bg-linear-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition flex items-center justify-center gap-2"
               >
                 <Download className="w-5 h-5" />
                 Install Boilerify

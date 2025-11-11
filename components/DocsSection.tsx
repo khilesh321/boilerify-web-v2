@@ -72,7 +72,7 @@ export default function DocsSection() {
         >
           <Link 
             href="/docs"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-emerald-500 to-green-600 rounded-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/50 transition"
           >
             View Full Documentation
             <ArrowRight className="w-5 h-5" />

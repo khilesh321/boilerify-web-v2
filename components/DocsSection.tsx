@@ -52,7 +52,7 @@ export default function DocsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="glass-card rounded-xl p-6 hover:border-emerald-500/50 transition cursor-pointer group"
+              className="glass-card rounded-xl p-6 hover:border-emerald-500/50 hover:-translate-y-1 transition cursor-pointer group"
             >
               <div className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center mb-4 group-hover:bg-emerald-500/30 transition">
                 <doc.icon className="w-6 h-6 text-emerald-400" />

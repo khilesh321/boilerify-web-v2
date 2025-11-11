@@ -69,11 +69,7 @@ export default function StackSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ 
-                y: -8,
-                transition: { duration: 0.3, ease: "easeOut" }
-              }}
-              className="glass-card rounded-xl p-8 hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-500/20 transition-all duration-300 group cursor-pointer"
+              className="glass-card rounded-xl p-8 hover:border-emerald-500/50 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-500/20 transition-all duration-300 group cursor-pointer"
             >
               <motion.div 
                 className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center mb-6 group-hover:bg-emerald-500/30 transition-all duration-300"

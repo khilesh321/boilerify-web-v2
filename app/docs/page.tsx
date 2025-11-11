@@ -39,7 +39,14 @@ const staggerContainer = {
 
 export default function DocsPage() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-slate-950 via-slate-900 to-slate-950">
+    <div className="min-h-screen bg-black text-white overflow-hidden">
+      {/* Grid Background */}
+      <div className="fixed inset-0 grid-background opacity-100 pointer-events-none" />
+      
+      {/* Gradient Orbs */}
+      <div className="fixed top-0 left-0 md:left-1/4 w-64 h-64 md:w-96 md:h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="fixed bottom-0 right-0 md:right-1/4 w-64 h-64 md:w-96 md:h-96 bg-green-500/20 rounded-full blur-3xl pointer-events-none" />
+
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 glass-card border-b border-white/10">
         <div className="container mx-auto px-6 py-4">
@@ -56,7 +63,7 @@ export default function DocsPage() {
         </div>
       </nav>
 
-      <div className="container mx-auto px-6 pt-32 pb-20">
+      <div className="container mx-auto px-6 pt-32 pb-20 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -67,7 +74,7 @@ export default function DocsPage() {
             <BookOpen className="w-4 h-4 text-emerald-400" />
             <span className="text-sm text-emerald-400">Complete Documentation</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-linear-to-r from-emerald-400 to-green-600 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-green-600 bg-clip-text text-transparent">
             Documentation
           </h1>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
@@ -92,7 +99,7 @@ export default function DocsPage() {
               key={i}
               variants={fadeInUp}
               href={link.href}
-              className="glass-card p-6 hover:border-emerald-500/50 transition group"
+              className="glass-card p-6 hover:border-emerald-500/50 transition group cursor-pointer rounded-xl"
             >
               <link.icon className="w-8 h-8 text-emerald-400 mb-2 group-hover:scale-110 transition" />
               <h3 className="font-semibold">{link.title}</h3>
@@ -262,7 +269,7 @@ Happy coding! 🚀`}
                     "Development-ready logging"
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-gray-300">
-                      <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -280,7 +287,7 @@ Happy coding! 🚀`}
                     "Optional Tailwind CSS with new @tailwindcss/vite plugin (no PostCSS config needed!)"
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-2 text-gray-300">
-                      <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -353,17 +360,17 @@ npm run dev  # Starts Vite dev server`}
               Boilerify uses npm by default for scaffolding projects, but you can use any package manager:
             </p>
             <div className="grid md:grid-cols-3 gap-4">
-              <div className="glass-card p-6 text-center">
+              <div className="glass-card p-6 text-center rounded-lg border border-white/10 hover:border-emerald-500/30 transition">
                 <Package className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
                 <h4 className="font-semibold mb-1">npm</h4>
                 <p className="text-sm text-gray-400">Default, widely supported</p>
               </div>
-              <div className="glass-card p-6 text-center">
+              <div className="glass-card p-6 text-center rounded-lg border border-white/10 hover:border-emerald-500/30 transition">
                 <Zap className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
                 <h4 className="font-semibold mb-1">pnpm</h4>
                 <p className="text-sm text-gray-400">Fast, disk-space efficient</p>
               </div>
-              <div className="glass-card p-6 text-center">
+              <div className="glass-card p-6 text-center rounded-lg border border-white/10 hover:border-emerald-500/30 transition">
                 <Package className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
                 <h4 className="font-semibold mb-1">yarn</h4>
                 <p className="text-sm text-gray-400">Popular alternative</p>
@@ -398,7 +405,7 @@ npm run dev  # Starts Vite dev server`}
                   open an issue
                 </a>.
               </p>
-              <div className="glass-card p-6">
+              <div className="glass-card p-6 rounded-lg border border-white/10">
                 <h4 className="font-semibold mb-3">Contact</h4>
                 <p className="text-gray-300 mb-2">
                   Khilesh -{" "}
@@ -475,10 +482,12 @@ function Section({ id, icon: Icon, title, children }: { id: string; icon: any; t
       className="scroll-mt-24"
     >
       <div className="flex items-center gap-3 mb-6">
-        <Icon className="w-8 h-8 text-emerald-400" />
+        <div className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+          <Icon className="w-6 h-6 text-emerald-400" />
+        </div>
         <h2 className="text-3xl font-bold">{title}</h2>
       </div>
-      <div className="glass-card p-8">
+      <div className="glass-card p-8 rounded-xl">
         {children}
       </div>
     </motion.section>
@@ -489,9 +498,9 @@ function FeatureItem({ icon: Icon, text }: { icon: any; text: string }) {
   return (
     <motion.div
       variants={fadeInUp}
-      className="flex items-start gap-3 p-4 rounded-lg hover:bg-white/5 transition"
+      className="flex items-start gap-3 p-4 rounded-lg hover:bg-white/5 transition border border-white/5 hover:border-emerald-500/30"
     >
-      <Icon className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
+      <Icon className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
       <span className="text-gray-300">{text}</span>
     </motion.div>
   );
@@ -499,8 +508,8 @@ function FeatureItem({ icon: Icon, text }: { icon: any; text: string }) {
 
 function RequirementItem({ title, link, linkText }: { title: string; link?: string; linkText?: string }) {
   return (
-    <div className="flex items-center gap-3 p-4 glass-card">
-      <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+    <div className="flex items-center gap-3 p-4 glass-card rounded-lg border border-white/10">
+      <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0" />
       <span className="text-gray-300">
         {title}
         {link && (
@@ -529,8 +538,8 @@ function InstallOption({ title, description, command, commands }: { title: strin
 function CodeBlock({ code, language = "bash" }: { code: string; language?: string }) {
   return (
     <div className="relative group">
-      <pre className="bg-slate-950 border border-white/10 rounded-lg p-4 overflow-x-auto">
-        <code className="text-sm text-gray-300">{code}</code>
+      <pre className="bg-slate-950 border border-white/10 rounded-lg p-4 overflow-x-auto hover:border-emerald-500/30 transition">
+        <code className="text-sm text-gray-300 font-mono">{code}</code>
       </pre>
     </div>
   );

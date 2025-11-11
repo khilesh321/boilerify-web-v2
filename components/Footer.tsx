@@ -1,6 +1,6 @@
 "use client";
 
-import { Terminal, Github, Twitter, Linkedin } from "lucide-react";
+import { Terminal, Github, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -30,14 +30,7 @@ export default function Footer() {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://twitter.com"
-              target="_blank"
-              className="text-gray-400 hover:text-emerald-400 transition"
-            >
-              <Twitter className="w-5 h-5" />
-            </a>
-            <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/khilesh-jawale/"
               target="_blank"
               className="text-gray-400 hover:text-emerald-400 transition"
             >

@@ -45,7 +45,7 @@ export default function CTASection() {
               Installation
             </a>
             <a
-              href="https://github.com/khilesh321/boilerify"
+              href="https://github.com/khilesh321/boilerify-cli"
               target="_blank"
               className="px-8 py-4 glass-card rounded-lg font-semibold hover:border-emerald-500/50 transition flex items-center gap-2"
             >

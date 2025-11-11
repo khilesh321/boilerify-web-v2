@@ -22,7 +22,7 @@ export default function Navbar() {
             <Link href="#setup" className="hover:text-emerald-400 transition">Setup</Link>
             <Link href="#docs" className="hover:text-emerald-400 transition">Docs</Link>
             <a 
-              href="https://github.com/khilesh321/boilerify" 
+              href="https://github.com/khilesh321/boilerify-cli" 
               target="_blank"
               className="flex items-center gap-2 hover:text-emerald-400 transition"
             >

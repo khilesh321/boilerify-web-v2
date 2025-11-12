@@ -36,9 +36,7 @@ const templates = [
       "Pre-configured basic structure",
       "Built-in environment using dotenv",
       "Integrated error & response handling",
-      "Concurrent development scripts using concurrently",
-      "NEXT.js / Socket.io routes already supported",
-      "Example chat demo included"
+      "Concurrent development scripts using concurrently (Coming Soon)",
     ]
   }
 ];

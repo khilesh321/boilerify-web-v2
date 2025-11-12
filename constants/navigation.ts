@@ -1,7 +1,7 @@
 export const NAV_LINKS = [
+  { href: "/docs", label: "Docs" },
   { href: "/#features", label: "Features" },
   { href: "/#setup", label: "Setup" },
-  { href: "/docs", label: "Docs" },
 ] as const;
 
 export const EXTERNAL_LINKS = {

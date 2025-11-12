@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Zap, Github, ArrowRight, Star, CheckCircle2, Sparkles } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -18,6 +19,14 @@ const staggerContainer = {
 };
 
 export default function HeroSection() {
+  const [version, setVersion] = useState('1.1.2');
+
+  useEffect(() => {
+    fetch('https://registry.npmjs.org/boilerify/latest')
+      .then(res => res.json())
+      .then(data => setVersion(data?.version || '1.1.2'))
+      .catch(() => setVersion('1.1.2')); // fallback to hardcoded version
+  }, []);
   return (
     <section className="relative pt-32 pb-20 px-6">
       <div className="container mx-auto max-w-6xl">
@@ -30,7 +39,7 @@ export default function HeroSection() {
           <motion.div variants={fadeInUp}>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-emerald-500/30 mb-6">
               <Star className="w-4 h-4 text-emerald-400 fill-emerald-400" />
-              <span className="text-sm text-emerald-400">v1.1.2 now available</span>
+              <span className="text-sm text-emerald-400">v{version} now available</span>
             </div>
           </motion.div>
 

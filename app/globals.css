@@ -22,6 +22,11 @@ html {
   scroll-behavior: smooth;
 }
 
+::selection {
+  background: rgba(34, 197, 94, 0.3);
+  color: var(--foreground);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
